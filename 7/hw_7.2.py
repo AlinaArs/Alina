@@ -17,4 +17,71 @@ while a != " ":
     print(sum_a)
     a = input()
 
+# 4
+'''Для одной задачи необходимо реализовать следующее - при соединении двух элементов получается новый. У нас есть 4 базовых элемента: Вода, Воздух, Огонь, Земля. Из них как раз и получаются новые: Шторм, Пар, Грязь, Молния, Пыль, Лава.
+Вот таблица преобразований:
+  Вода + Воздух = Шторм
+  Вода + Огонь = Пар
+  Вода + Земля = Грязь
+  Воздух + Огонь = Молния
+  Воздух + Земля = Пыль
+  Огонь + Земля = Лава
+'''
+class Ground:
+    pass
+
+
+class Water:
+    def __add__(self, Air):
+        return Storm()
+
+    def __add__(self, Fire):
+        return Steam()
+
+    def __add__(self, Ground):
+        return Dirt()
+
+
+class Storm:
+    answer = 'сложили Воду и Воздух и вывели Шторм'
+
+
+class Steam:
+    answer = 'сложили Воду и Огонь и вывели Пар'
+
+
+class Dirt:
+    answer = 'сложили Воду и Землю и вывели Грязь'
+
+
+class Fire:
+    def __add__(self, Air):
+        return Flash()
+
+    def __add__(self, Ground):
+        return Lava()
+
+
+class Flash:
+    answer = 'сложили Огонь и Воздух и вывели Молнию'
+
+
+class Lava:
+    answer = 'сложили Огонь и Землю и вывели Лаву'
+
+
+class Air:
+    def __add__(self, Ground):
+        return Dust()
+
+
+class Dust:
+    answer = 'сложили Воздух и Землю и вывели Пыль'
+
+
+a = Water()
+b = Ground()
+c = a + b
+print(c.answer)
+
 
