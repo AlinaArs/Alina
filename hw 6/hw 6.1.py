@@ -12,7 +12,7 @@ class Person:
     def __init__(self, name, age, grades):
         self.age = age
         self.name = name
-        self.__grades = grades
+        self.set_grades(grades)
 
     def __str__(self):
         return f"{self.name}, {self.age} years old"
