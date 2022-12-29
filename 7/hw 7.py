@@ -17,61 +17,48 @@ def print_accounts(accounts):
 
 
 def transfer_money(accounts, account_from, account_to, value):
-   """Выполнить перевод 'value' денег со счета 'account_from' на 'account_to'.
+    if __name__ == "__main__":
+       accounts = {
+           "Василий Иванов": 100,
+           "Екатерина Белых": 1500,
+           "Михаил Лермонтов": 400
+       }
+       print_accounts(accounts)
 
-   При переводе денежных средств необходимо учитывать:
-       - хватает ли денег на счету, с которого осуществляется перевод;
-       - перевод состоит из уменьшения баланса первого счета и увеличения
-         баланса второго; если хотя бы на одном этапе происходит ошибка,
-         аккаунты должны быть приведены в первоначальное состояние
-         (механизм транзакции)
-         см. https://ru.wikipedia.org/wiki/Транзакция_(информатика).
+       payment_info = {
+           "account_from": "Екатерина Белых",
+           "account_to": "Василий Иванов"
+       }
 
-   Исключения (raise):
-       - NoMoneyToWithdrawError: на счету 'account_from'
-                                 не хватает денег для перевода;
-       - PaymentError: ошибка при переводе.
-   """
+       print("Перевод от {account_from} для {account_to}...".
+             format(**payment_info))
 
-if __name__ == "__main__":
-   accounts = {
-       "Василий Иванов": 100,
-       "Екатерина Белых": 1500,
-       "Михаил Лермонтов": 400
-   }
-   print_accounts(accounts)
+       payment_info["value"] = int(input("Сумма = "))
 
-   payment_info = {
-       "account_from": "Екатерина Белых",
-       "account_to": "Василий Иванов"
-   }
-
-   print("Перевод от {account_from} для {account_to}...".
-         format(**payment_info))
-
-   payment_info["value"] = int(input("Сумма = "))
-
-try:
-    payment_info["value"] <= 0
-    raise PaymentError("ошибка при переводе")
-except PaymentError as err:
-    print(err)
-
-if payment_info["value"] > 0:
     try:
-        payment_info["value"] <= accounts["Екатерина Белых"]
-        transfer_money(accounts, **payment_info)
-        print("OK!")
-        accounts["Екатерина Белых"] = accounts["Екатерина Белых"] - payment_info["value"]
-        accounts["Василий Иванов"] = accounts["Василий Иванов"] + payment_info["value"]
-        print_accounts(accounts)
-        if payment_info["value"] > accounts["Екатерина Белых"]:
+        payment_info["value"] <= 0
+        raise PaymentError("ошибка при переводе")
+    except PaymentError as err:
+        print(err)
+
+    if payment_info["value"] > 0:
+        try:
+            payment_info["value"] <= accounts["Екатерина Белых"]
+            transfer_money(accounts, **payment_info)
+            print("OK!")
+            accounts["Екатерина Белых"] = accounts["Екатерина Белых"] - payment_info["value"]
+            accounts["Василий Иванов"] = accounts["Василий Иванов"] + payment_info["value"]
+            print_accounts(accounts)
+
+            if payment_info["value"] > accounts["Екатерина Белых"]:
             raise NoMoneyToWithdrawError("на счету {account_from} не хватает денег для перевода".format(**payment_info))
-    except NoMoneyToWithdrawError as err:
-        print('Будьте внимательны', err)
+            except NoMoneyToWithdrawError as err:
+            print('Будьте внимательны', err)
 
 
-# условие задачи
+
+
+
 
 
 

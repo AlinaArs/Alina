@@ -10,23 +10,23 @@
 
 def calculation(a, b, c):
     if b == '+':
-        print(a + c)
+        return a + c
     elif b == '-':
-        print(a - c)
+        return a - c
     elif b == '*':
-        print(a * c)
+        return a * c
     elif b == '/':
         try:
-            print(a / c)
+            return a / c
         except ZeroDivisionError:
             print("На ноль делить нельзя!")
 
     elif b == '//':
-        print(a // c)
+        return a // c
     elif b == '%':
-        print(a % c)
+        return a % c
     elif b == '**':
-        print(a ** c)
+        return a ** c
     else:
         print('Операция не определена, попробуйте еще раз')
 
