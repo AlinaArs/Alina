@@ -34,28 +34,25 @@ site = {
 }
 
 
-def search(d, kk, lv=-1):
-    if (lv == -1):
-        res = []
-        for k in d.keys():
-            if k == kk:
-                res = res + [d[k]]
-            if type(d[k]) is dict:
-                res = res + search(d[k], kk, lv=-1)
-        return res
-    else:
-        if (lv == 0):
-            return []
-        else:
-            res = []
-            for k in d.keys():
-                if k == kk:
-                    res = res + [d[k]]
-                if type(d[k]) is dict:
-                    res = res + search(d[k], kk, lv - 1)
-            return res
-print(search(site, 'p'))
-print(search(site, 'p', lv = 3))
+def find_key(struct, key, max_depth=None, depth=1):
+    result = None
+
+    if max_depth and max_depth < depth:
+        return result
+
+    if key in struct:
+        return struct[key]
+
+    for sub_struct in struct.values():
+
+        if isinstance(sub_struct, dict):
+
+            result = find_key(sub_struct, key, max_depth, depth=depth + 1)
+
+            if result:
+                break
+
+    return result
 
 # 4
 '''Даны список букв (letters) и список цифр (numbers). Каждый список состоит из N элементов. Создайте кортежи из пар элементов списков и запишите их в список results. Не используйте функцию zip. Решите задачу “в одну строку”     (не считая print(results))

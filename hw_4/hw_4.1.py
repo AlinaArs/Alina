@@ -1,6 +1,5 @@
 # 1
 def max_common_divisor(a, b):
-    temp = 0
     while b != 0:
         temp = b
         b = a % b
@@ -26,11 +25,9 @@ def number_in_sentence(n):
     counter = 0
     number = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
     for i in range(len(n)):
-        for j in range(len(number)):
-            if number[j] == n[i]:
+            if n[i] in number:
                 counter += 1
-    return (counter)
-
+    return counter
 
 print(number_in_sentence('Моей милой всего 25. И красивее нее не сыскать. Моей милой всего 25.'))
 
@@ -62,14 +59,16 @@ print(*result, sep='\n')
 def statistics(sentence):
     sentence = sentence.lower()
     sentence_lst = list(sentence)
+    sentence_uniq = set(sentence)
     dictionary = dict()
-    for i in range(len(sentence)):
+    for i in range(len(sentence_uniq)):
         quantity = sentence_lst.count(sentence_lst[i])
         dictionary[sentence[i]] = quantity
-    return (dictionary)
+    return dictionary
 
 
 print(statistics('И лампа не горит И врут календари'))
+
 
 # 5
 '''Используя шифр Цезаря (достаточно только букв русского алфавита, знаки препинания не изменяются), зашифруйте, а затем расшифруйте введенную строку.
