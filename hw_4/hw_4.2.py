@@ -15,7 +15,7 @@ def sortion(*arguments):
             positive_arguments.append(arguments[i])
     negative_arguments.sort(reverse=True)
     positive_arguments.sort()
-    return (negative_arguments, positive_arguments)
+    return negative_arguments, positive_arguments
 
 
 print(sortion(2, 6, 9, -3, -7, -16, -1, -2, 1))
@@ -32,7 +32,7 @@ def palindrom(word):
             answer = 'YES'
         else:
             answer = 'NO'
-    return (answer)
+    return answer
 
 
 print(palindrom('Анна'))
@@ -80,7 +80,7 @@ def magic_date(date):
         answer = "YES, it's magic!"
     else:
         answer = 'No magic'
-    return (answer)
+    return answer
 
 
 print(magic_date(input()))

@@ -43,7 +43,7 @@ print(number_in_sentence('Моей милой всего 25. И красивее
 def str_sym(s, k):
     first_and_third_str = k * (len(s) + 2)
     second_str = k + s + k
-    return (first_and_third_str, second_str, first_and_third_str)
+    return first_and_third_str, second_str, first_and_third_str
 
 
 result = list(str_sym('World', '?'))
@@ -79,8 +79,7 @@ def message(initial_message):
     initial_message = initial_message.upper()
     k = 3
     lst_new_message = []
-    alphabet = ['А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У',
-                'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ы', 'Ь', 'Э', 'Ю', 'Я']
+    alphabet = АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ
     for i in range(len(initial_message)):
         if initial_message[i] in alphabet:
             new_letter = alphabet[alphabet.index(initial_message[i]) + 3]
@@ -88,7 +87,7 @@ def message(initial_message):
         else:
             lst_new_message.append(initial_message[i])
     new_message = str(lst_new_message)
-    return (new_message)
+    return new_message
 
 
 print(message('Пошел есть'))
