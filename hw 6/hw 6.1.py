@@ -24,7 +24,7 @@ class Person:
         average_grade = sum(self.__grades) / len(self.__grades)
         return self.name, self.average_grade
 
-    def __greet__(self):
+    def greet(self):
         return f"Привет! Меня зовут {self.name}, мне {self.age} лет. Мои оценки {self.__grades}"
 
 list_students =[]
@@ -32,7 +32,7 @@ fake = Faker()
 for i in range(10):
     list_students.append(Person(fake.name(), i, list(range(3, 7))))
 for i in list_students:
-    print(i.__greet__())
+    print(i.greet())
 
 # 6
 '''Создайте класс Point, экземпляры которого будут создаваться из координат x и y.'''
